@@ -6,7 +6,9 @@ class LeadCtrl {
 
   public sendCtrl = async ({ body }: Request, res: Response) => {
     const { message, phone } = body;
-    const response = await this.leadCreator.sendMessageAndSave({ message, phone })
+    console.log(body);
+    console.log(message);
+    const response = await this.leadCreator.sendMessageAndSave({ message , phone })
     res.send(response);
   };
 }
