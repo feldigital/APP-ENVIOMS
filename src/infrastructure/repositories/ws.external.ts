@@ -13,9 +13,11 @@ class WsTransporter extends Client implements LeadExternal {
       authStrategy: new LocalAuth(),
       puppeteer: {
         headless: true,
+        //executablePath: '/usr/bin/google-chrome-stable',
         args: [
           "--disable-setuid-sandbox",
           "--unhandled-rejections=strict",
+          "--no-sandbox"
         ],
       },
     });
@@ -49,7 +51,7 @@ class WsTransporter extends Client implements LeadExternal {
     try {
       if (!this.status) return Promise.resolve({ error: "WAIT_LOGIN" });
       const { message, phone } = lead;
-      console.log(lead);
+      //console.log(lead);
       console.log(phone);
       console.log(message);
       const response = await this.sendMessage(`${phone}@c.us`, message);
@@ -59,6 +61,7 @@ class WsTransporter extends Client implements LeadExternal {
     }
   }
 
+  
   getStatus(): boolean {
     return this.status;
   }
